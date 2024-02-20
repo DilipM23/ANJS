@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./lib.js"></script>
+    <title>Calculation</title>
+</head>
+<body ng-app="myApp" ng-controller="myCntrl">
+    <script>
+        var app = angular.module("myApp",[]);
+        app.controller("myCntrl", function($scope){
+            $scope.factorial = function(){
+                if($scope.num > 0)
+                    $scope.factres = fact($scope.num);
+                else
+                    alert("Cannot find the factorial");
+            }
+            $scope.square = function(){
+                $scope.squareres = $scope.num * $scope.num;
+            }
+        });
+        function fact(num){
+            if(num == 0)
+                return 1;
+            else
+                return num * fact(num-1);
+        }
+    </script>
+    <label>Enter the number:</label><br>
+    <input type="number" ng-model="num" />
+    <button type="button" ng-click="factorial()">Calculate Factorial</button>
+    <button type="button" ng-click="square()">Calculate Square</button>
+    <h1>The factorial of the number:</h1>{{factres}}
+    <h1>The square of the number:</h1>{{squareres}}
+</body>
+</html>

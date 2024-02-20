@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./lib.js"></script>
+    <title>To-Do List</title>
+</head>
+<body ng-app="myApp" ng-controller="myCntrl">
+    <script>
+        var app  = angular.module("myApp", []);
+        app.controller("myCntrl", function($scope){
+            $scope.tasks = ["task1", "task2"];
+            $scope.addTask = function(){
+                $scope.tasks.push($scope.newtask);
+                $scope.newtask = '';
+            }
+            $scope.removeTask = function(index){
+                var confirmDel = confirm("Do you really wanna delete?");
+                if(confirmDel)
+                    $scope.tasks.splice(index,1);
+            }
+            $scope.updateTask = function(index){
+                var updatedTask = prompt("Enter the updated task");
+                $scope.tasks.splice(index,1,updatedTask);
+            }
+        });
+    </script>
+    <label>Enter the task: </label><br>
+    <input type="text" ng-model="newtask" />
+    <button type="button" ng-click="addTask()">Add</button><br><br>
+    <table>
+        <thead>
+            <tr>
+                <th>Task</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="task in tasks">
+                <td>{{task}}</td>
+                <td><button type="button" ng-click="updateTask()">Update</button></td>
+                <td><button type="button" ng-click="removeTask()">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
