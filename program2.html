@@ -28,7 +28,7 @@
     <ol>
         <li ng-repeat="x in items">
             {{x}}
-            <button type="button" ng-click="removeItem()">Remove</button>
+            <button type="button" ng-click="removeItem($index)">Remove</button>
         </li>
     </ol>
 </body>
